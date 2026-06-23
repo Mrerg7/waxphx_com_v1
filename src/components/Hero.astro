@@ -4,10 +4,10 @@ import { ACQUISITION_MAILTO, cfImageUrl, CF_IMAGES } from '../config/site';
 const heroImage = cfImageUrl(CF_IMAGES.heroImageId);
 ---
 
-<header class="relative overflow-hidden">
-  <!-- Hero background image -->
+<header class="relative h-screen flex items-center justify-center overflow-hidden">
+  <!-- Fixed parallax background image -->
   <div
-    class="absolute inset-0 z-0"
+    class="fixed inset-0 z-0"
     style={`
       background-image: url('${heroImage}');
       background-size: cover;
@@ -16,10 +16,10 @@ const heroImage = cfImageUrl(CF_IMAGES.heroImageId);
     `}
     aria-hidden="true"
   ></div>
-  <!-- Overlay for text readability -->
-  <div class="absolute inset-0 z-[1] bg-gradient-to-b from-[#F8F1E9]/85 via-[#F8F1E9]/75 to-[#F8F1E9]/95" aria-hidden="true"></div>
+  <!-- Subtle overlay for text readability -->
+  <div class="fixed inset-0 z-[1] bg-gradient-to-b from-black/30 via-black/15 to-[#F8F1E9]/90" aria-hidden="true"></div>
 
-  <div class="relative z-[2] max-w-5xl mx-auto px-6 pt-16 pb-20 md:pt-20 md:pb-24 text-center">
+  <div class="relative z-[2] max-w-5xl mx-auto px-6 py-20 text-center">
     <!-- Premium .com Badge -->
     <div class="inline-flex items-center gap-x-2 mb-6">
       <div class="com-badge flex items-center gap-x-2 px-4 py-1.5 rounded-2xl text-sm font-bold tracking-[1px]">
@@ -55,7 +55,7 @@ const heroImage = cfImageUrl(CF_IMAGES.heroImageId);
       </a>
     </div>
 
-    <div class="mt-8 flex items-center justify-center gap-x-6 text-sm text-[#6B6B6B]">
+    <div class="mt-8 flex items-center justify-center gap-x-6 text-sm text-white/80">
       <div class="flex items-center gap-x-1.5">
         <i class="fa-solid fa-check text-[#B85C38]"></i>
         <span>Exact-match keywords</span>
@@ -69,7 +69,15 @@ const heroImage = cfImageUrl(CF_IMAGES.heroImageId);
         <span>Premium resale value</span>
       </div>
     </div>
+
+    <!-- Scroll indicator -->
+    <div class="mt-12 animate-bounce">
+      <a href="#why" class="inline-flex flex-col items-center gap-y-2 text-white/60 hover:text-white transition-colors">
+        <span class="text-xs uppercase tracking-[3px] font-semibold">Scroll</span>
+        <i class="fa-solid fa-chevron-down"></i>
+      </a>
+    </div>
   </div>
 
-  <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[1px] bg-gradient-to-r from-transparent via-[#D4C9B8] to-transparent"></div>
+  <div class="fixed bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent z-[2]"></div>
 </header>
