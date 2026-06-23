@@ -1,0 +1,53 @@
+---
+import { ACQUISITION_MAILTO, SITE } from '../config/site';
+---
+
+<section id="acquire" class="bg-[#2D2D2D] text-white">
+  <div class="max-w-4xl mx-auto px-6 py-20 text-center">
+    <div class="max-w-2xl mx-auto">
+      <div class="inline-block px-4 py-1 bg-white/10 rounded-full text-sm font-medium tracking-wider mb-6">RARE PREMIUM .COM</div>
+
+      <h2 class="text-5xl md:text-6xl font-semibold tracking-tighter mb-6">Own the most powerful name<br />in Phoenix waxing.</h2>
+
+      <p class="text-xl text-white/70 max-w-md mx-auto mb-10">waxphx.com is a high-value, scarce digital asset for serious buyers who want maximum brand authority, trust, and long-term equity in one of America's fastest-growing metros.</p>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a
+          href={ACQUISITION_MAILTO}
+          class="inline-flex items-center justify-center gap-x-3 px-10 py-4 bg-white text-[#2D2D2D] hover:bg-[#F8F1E9] font-semibold text-lg rounded-3xl transition-all active:scale-[0.985]"
+        >
+          <span>Make an Offer</span>
+          <i class="fa-solid fa-envelope"></i>
+        </a>
+
+        <button
+          id="copy-email-btn"
+          class="inline-flex items-center justify-center gap-x-3 px-8 py-4 border border-white/30 hover:bg-white/5 font-medium text-lg rounded-3xl transition-all"
+        >
+          <span id="copy-btn-text">Copy Contact Email</span>
+        </button>
+      </div>
+
+      <p class="mt-8 text-sm text-white/50">Serious inquiries only. Flexible acquisition structures available for qualified buyers.</p>
+    </div>
+  </div>
+</section>
+
+<script>
+  function copyEmail() {
+    const email = 'sales@desertrich.com';
+    navigator.clipboard.writeText(email).then(() => {
+      const btn = document.getElementById('copy-btn-text');
+      if (btn) {
+        const original = btn.textContent;
+        btn.textContent = 'Copied to clipboard!';
+        setTimeout(() => {
+          btn.textContent = original;
+        }, 2200);
+      }
+    }).catch(() => {
+      window.location.href = 'mailto:sales@desertrich.com';
+    });
+  }
+  document.getElementById('copy-email-btn')?.addEventListener('click', copyEmail);
+</script>

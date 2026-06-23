@@ -1,0 +1,45 @@
+---
+import { ACQUISITION_MAILTO } from '../config/site';
+---
+
+<nav class="bg-white/95 backdrop-blur-md border-b border-[#EDE4D7] sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="flex items-center justify-between h-20">
+      <div class="flex items-center gap-x-3">
+        <div class="flex items-center gap-x-2">
+          <div class="w-9 h-9 bg-[#B85C38] rounded-xl flex items-center justify-center">
+            <span class="text-white text-2xl font-bold tracking-tighter">WP</span>
+          </div>
+          <div>
+            <span class="font-semibold text-2xl tracking-tight">waxphx</span>
+            <span class="font-semibold text-2xl tracking-tight text-[#B85C38]">.com</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-x-4">
+        <a href="#why" class="hidden md:block px-4 py-2 text-sm font-medium text-[#4A5D4A] hover:text-[#2D2D2D] transition-colors">Why .com</a>
+        <a href="#market" class="hidden md:block px-4 py-2 text-sm font-medium text-[#4A5D4A] hover:text-[#2D2D2D] transition-colors">Phoenix Market</a>
+        <a href="#use-cases" class="hidden md:block px-4 py-2 text-sm font-medium text-[#4A5D4A] hover:text-[#2D2D2D] transition-colors">Use Cases</a>
+
+        <a
+          href="#acquire"
+          class="inline-flex items-center justify-center px-6 py-2.5 bg-[#B85C38] hover:bg-[#A04E30] text-white text-sm font-semibold rounded-2xl transition-all active:scale-[0.985]"
+        >
+          Make an Offer
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<script>
+  window.addEventListener('scroll', () => {
+    const nav = document.querySelector('nav');
+    if (window.scrollY > 20) {
+      nav.classList.add('nav-scrolled', 'bg-white/95');
+    } else {
+      nav.classList.remove('nav-scrolled');
+    }
+  });
+</script>
