@@ -1,9 +1,25 @@
 ---
-import { ACQUISITION_MAILTO } from '../config/site';
+import { ACQUISITION_MAILTO, cfImageUrl, CF_IMAGES } from '../config/site';
+
+const heroImage = cfImageUrl(CF_IMAGES.heroImageId);
 ---
 
 <header class="relative overflow-hidden">
-  <div class="max-w-5xl mx-auto px-6 pt-16 pb-20 md:pt-20 md:pb-24 text-center">
+  <!-- Hero background image -->
+  <div
+    class="absolute inset-0 z-0"
+    style={`
+      background-image: url('${heroImage}');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    `}
+    aria-hidden="true"
+  ></div>
+  <!-- Overlay for text readability -->
+  <div class="absolute inset-0 z-[1] bg-gradient-to-b from-[#F8F1E9]/85 via-[#F8F1E9]/75 to-[#F8F1E9]/95" aria-hidden="true"></div>
+
+  <div class="relative z-[2] max-w-5xl mx-auto px-6 pt-16 pb-20 md:pt-20 md:pb-24 text-center">
     <!-- Premium .com Badge -->
     <div class="inline-flex items-center gap-x-2 mb-6">
       <div class="com-badge flex items-center gap-x-2 px-4 py-1.5 rounded-2xl text-sm font-bold tracking-[1px]">
