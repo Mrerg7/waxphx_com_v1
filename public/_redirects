@@ -1,2 +1,6 @@
-/index.html / 301
+# Canonical homepage (absolute URL for crawlers)
+/index.html https://waxphx.com/ 301
 
+# Legacy standalone landing page from pre-Astro deployment
+/waxphx-com-premium-landing.html https://waxphx.com/ 301
+/waxphx-com-premium-landing.html/ https://waxphx.com/ 301
