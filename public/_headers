@@ -9,6 +9,9 @@
 /404.html
   X-Robots-Tag: noindex
 
+/404/
+  X-Robots-Tag: noindex
+
 /
   Link: <https://waxphx.com/>; rel="canonical"
 

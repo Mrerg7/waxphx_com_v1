@@ -16,123 +16,127 @@ const {
   noindex = false,
 } = Astro.props;
 
-const pathname = Astro.url.pathname.endsWith('/') ? Astro.url.pathname : `${Astro.url.pathname}/`;
-const canonicalURL = new URL(pathname, SITE.url);
+const siteOrigin = SITE.url.replace(/\/$/, '');
+// Always canonicalize to the homepage — this site is a single landing page.
+// Avoid self-canonicalizing soft paths like /404/ that confuse crawlers.
+const canonicalURL = `${siteOrigin}/`;
 const publishedDate = '2026-06-22';
 
-const structuredData = {
-  '@context': 'https://schema.org',
-  '@graph': [
-    {
-      '@type': 'WebSite',
-      '@id': `${SITE.url}/#website`,
-      url: SITE.url,
-      name: SITE.name,
-      description,
-      inLanguage: 'en-US',
-    },
-    {
-      '@type': 'WebPage',
-      '@id': `${SITE.url}/#webpage`,
-      url: SITE.url,
-      name: title,
-      description,
-      isPartOf: { '@id': `${SITE.url}/#website` },
-      datePublished: publishedDate,
-      dateModified: publishedDate,
-      inLanguage: 'en-US',
-    },
-    {
-      '@type': 'Product',
-      '@id': `${SITE.url}/#product`,
-      name: 'waxphx.com Premium Domain Name',
-      description:
-        'The definitive premium .com domain for professional body waxing, facial waxing, and expert hair removal in Phoenix. Available for acquisition.',
-      url: SITE.url,
-      image: OG_IMAGE,
-      category: 'Premium Domain Name',
-      brand: {
-        '@type': 'Brand',
-        name: 'waxphx.com',
-      },
-      offers: {
-        '@type': 'Offer',
-        url: ACQUISITION_MAILTO,
-        price: '95000',
-        priceCurrency: 'USD',
-        availability: 'https://schema.org/InStock',
-        seller: {
-          '@type': 'Organization',
+const structuredData = noindex
+  ? null
+  : {
+      '@context': 'https://schema.org',
+      '@graph': [
+        {
+          '@type': 'WebSite',
+          '@id': `${siteOrigin}/#website`,
+          url: canonicalURL,
           name: SITE.name,
-          email: SITE.email,
+          description,
+          inLanguage: 'en-US',
         },
-        shippingDetails: {
-          '@type': 'OfferShippingDetails',
-          shippingRate: {
-            '@type': 'MonetaryAmount',
-            value: '0.00',
-            currency: 'USD',
+        {
+          '@type': 'WebPage',
+          '@id': `${siteOrigin}/#webpage`,
+          url: canonicalURL,
+          name: title,
+          description,
+          isPartOf: { '@id': `${siteOrigin}/#website` },
+          datePublished: publishedDate,
+          dateModified: publishedDate,
+          inLanguage: 'en-US',
+        },
+        {
+          '@type': 'Product',
+          '@id': `${siteOrigin}/#product`,
+          name: 'waxphx.com Premium Domain Name',
+          description:
+            'The definitive premium .com domain for professional body waxing, facial waxing, and expert hair removal in Phoenix. Available for acquisition.',
+          url: canonicalURL,
+          image: OG_IMAGE,
+          category: 'Premium Domain Name',
+          brand: {
+            '@type': 'Brand',
+            name: 'waxphx.com',
           },
-          deliveryTime: {
-            '@type': 'ShippingDeliveryTime',
-            handlingTime: {
-              '@type': 'QuantitativeValue',
-              minValue: 0,
-              maxValue: 1,
-              unitCode: 'DAY',
+          offers: {
+            '@type': 'Offer',
+            url: ACQUISITION_MAILTO,
+            price: '95000',
+            priceCurrency: 'USD',
+            availability: 'https://schema.org/InStock',
+            seller: {
+              '@type': 'Organization',
+              name: SITE.name,
+              email: SITE.email,
             },
-            transitTime: {
-              '@type': 'QuantitativeValue',
-              minValue: 0,
-              maxValue: 0,
-              unitCode: 'DAY',
+            shippingDetails: {
+              '@type': 'OfferShippingDetails',
+              shippingRate: {
+                '@type': 'MonetaryAmount',
+                value: '0.00',
+                currency: 'USD',
+              },
+              deliveryTime: {
+                '@type': 'ShippingDeliveryTime',
+                handlingTime: {
+                  '@type': 'QuantitativeValue',
+                  minValue: 0,
+                  maxValue: 1,
+                  unitCode: 'DAY',
+                },
+                transitTime: {
+                  '@type': 'QuantitativeValue',
+                  minValue: 0,
+                  maxValue: 0,
+                  unitCode: 'DAY',
+                },
+              },
+              shippingDestination: {
+                '@type': 'DefinedRegion',
+                addressCountry: 'US',
+              },
+            },
+            hasMerchantReturnPolicy: {
+              '@type': 'MerchantReturnPolicy',
+              returnPolicyCategory: 'https://schema.org/MerchantReturnFiniteReturnWindow',
+              returnMethod: 'https://schema.org/ReturnByMail',
+              returnFees: 'https://schema.org/FreeReturn',
+              applicableCountry: 'US',
+              merchantReturnDays: 0,
             },
           },
-          shippingDestination: {
-            '@type': 'DefinedRegion',
+          aggregateRating: {
+            '@type': 'AggregateRating',
+            ratingValue: '5',
+            bestRating: '5',
+            ratingCount: '1',
+          },
+          review: {
+            '@type': 'Review',
+            author: {
+              '@type': 'Organization',
+              name: SITE.name,
+            },
+            reviewBody:
+              'The definitive .com domain for the Phoenix waxing and hair removal industry — unmatched brand authority and local keyword dominance.',
+          },
+        },
+        {
+          '@type': 'Organization',
+          '@id': `${siteOrigin}/#organization`,
+          name: SITE.name,
+          url: canonicalURL,
+          email: SITE.email,
+          address: {
+            '@type': 'PostalAddress',
+            addressLocality: 'Phoenix',
+            addressRegion: 'AZ',
             addressCountry: 'US',
           },
         },
-        hasMerchantReturnPolicy: {
-          '@type': 'MerchantReturnPolicy',
-          returnPolicyCategory: 'https://schema.org/MerchantReturnFiniteReturnWindow',
-          returnMethod: 'https://schema.org/ReturnByMail',
-          returnFees: 'https://schema.org/FreeReturn',
-          applicableCountry: 'US',
-          merchantReturnDays: 0,
-        },
-      },
-      aggregateRating: {
-        '@type': 'AggregateRating',
-        ratingValue: '5',
-        bestRating: '5',
-        ratingCount: '1',
-      },
-      review: {
-        '@type': 'Review',
-        author: {
-          '@type': 'Organization',
-          name: SITE.name,
-        },
-        reviewBody:
-          'The definitive .com domain for the Phoenix waxing and hair removal industry — unmatched brand authority and local keyword dominance.',
-      },
-    },
-    {
-      '@type': 'Organization',
-      '@id': `${SITE.url}/#organization`,
-      name: SITE.name,
-      url: SITE.url,
-      email: SITE.email,
-      address: {
-        '@type': 'PostalAddress',
-        addressLocality: 'Phoenix',
-        addressRegion: 'AZ',
-        addressCountry: 'US',
-      },
-    },
-  ],
-};
+      ],
+    };
 ---
 
 <!doctype html>
@@ -170,7 +174,9 @@ const structuredData = {
       <meta name="google-site-verification" content={SITE.googleSiteVerification} />
     )}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-    <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+    {structuredData && (
+      <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+    )}
   </head>
   <body>
     <slot />

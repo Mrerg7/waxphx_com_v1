@@ -28,11 +28,13 @@
   }
 
   .domain-name {
-    font-size: 4.75rem;
+    font-size: clamp(2.5rem, 12vw, 4.75rem);
     line-height: 1;
     font-weight: 800;
     letter-spacing: -0.05em;
     color: #2D2D2D;
+    max-width: 100%;
+    overflow-wrap: anywhere;
   }
 
   .value-card {

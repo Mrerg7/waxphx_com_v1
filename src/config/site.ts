@@ -3,7 +3,7 @@ export const SITE = {
   title: 'waxphx.com • Premium Domain for Sale | Phoenix Waxing & Hair Removal',
   description:
     'Own waxphx.com — the ultimate .com domain for professional body waxing, facial waxing, and expert hair removal in Phoenix. Short, memorable, high-trust .com with perfect local keywords.',
-  url: 'https://waxphx.com/',
+  url: 'https://waxphx.com',
   email: 'sales@desertrich.com',
   locale: 'en_US',
   location: 'Phoenix, Arizona',

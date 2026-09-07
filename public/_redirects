@@ -1,5 +1,12 @@
 # Canonical homepage (absolute URL for crawlers)
 /index.html https://waxphx.com/ 301
+/index https://waxphx.com/ 301
+/index/ https://waxphx.com/ 301
+
+# Soft 404 URL variants must not be crawlable as 200 pages
+/404 https://waxphx.com/ 301
+/404/ https://waxphx.com/ 301
+/404.html https://waxphx.com/ 301
 
 # Legacy standalone landing page from pre-Astro deployment
 /waxphx-com-premium-landing.html https://waxphx.com/ 301
