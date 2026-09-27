@@ -1,0 +1,49 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import PageIntro from '../components/PageIntro.astro';
+import FaqList from '../components/FaqList.astro';
+import StickyBar from '../components/StickyBar.astro';
+import { SITE } from '../config/site';
+
+const title = 'waxphx.com FAQ | Buying the Phoenix Waxing Domain';
+const description =
+  'Answers for buyers of waxphx.com: asking price of $95,000, what the sale includes, escrow, transfer timing, and what the domain does not guarantee.';
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  path="/faq/"
+  includeFaq
+  crumbs={[
+    { name: 'Home', path: '/' },
+    { name: 'FAQ', path: '/faq/' },
+  ]}
+>
+  <Nav />
+  <main id="content">
+    <PageIntro
+      eyebrow="FAQ"
+      title="Straight answers for buyers."
+      lede="The same questions come up on every serious inquiry. Here they are in full, without a sales script."
+      crumbs={[
+        { name: 'Home', href: '/' },
+        { name: 'FAQ', href: '/faq/' },
+      ]}
+    />
+    <section class="bg-cream">
+      <div class="mx-auto max-w-3xl px-5 py-16 md:px-8 md:py-20">
+        <FaqList openFirst />
+        <p class="mt-8 text-sm text-mute">
+          Ready to name a number? Start on the <a class="font-semibold text-clay underline decoration-clay/30 underline-offset-4" href="/acquire/">acquisition page</a>
+          or email <a class="font-semibold text-ink" href={`mailto:${SITE.email}`}>{SITE.email}</a>.
+          Asking price {SITE.askingPriceLabel}.
+        </p>
+      </div>
+    </section>
+  </main>
+  <Footer />
+  <StickyBar />
+</BaseLayout>

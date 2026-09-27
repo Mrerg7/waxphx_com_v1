@@ -1,0 +1,37 @@
+---
+interface Props {
+  name: 'arrow' | 'check' | 'mail' | 'menu';
+  class?: string;
+}
+const { name, class: className = 'h-5 w-5' } = Astro.props;
+---
+
+{
+  name === 'arrow' && (
+    <svg class={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
+      <path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+  )
+}
+{
+  name === 'check' && (
+    <svg class={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
+      <path d="M5 12.5 9.2 17 19 7" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+  )
+}
+{
+  name === 'mail' && (
+    <svg class={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
+      <rect x="3.5" y="5.5" width="17" height="13" rx="2" />
+      <path d="m4 7 8 6 8-6" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+  )
+}
+{
+  name === 'menu' && (
+    <svg class={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
+      <path d="M4 7h16M4 12h16M4 17h16" stroke-linecap="round" />
+    </svg>
+  )
+}

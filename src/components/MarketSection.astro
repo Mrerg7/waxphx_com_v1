@@ -1,43 +1,33 @@
-<section id="market" class="relative z-10 bg-white border-y border-[#EDE4D7]">
-  <div class="max-w-5xl mx-auto px-6 py-16 md:py-20">
-    <div class="grid md:grid-cols-12 gap-x-12 items-center">
-      <div class="md:col-span-7">
-        <div class="modern-pill mb-4 inline-block">PHOENIX MARKET LEADERSHIP</div>
-        <h2 class="section-header tracking-tight mb-6">Own the digital front door to Phoenix beauty</h2>
+---
+import Icon from './Icon.astro';
+---
 
-        <div class="prose prose-lg text-[#4A5D4A]">
-          <p class="mb-4">Phoenix is one of America's fastest-growing major metros &mdash; a dynamic, sun-drenched city where personal grooming, fitness, and self-care are year-round priorities.</p>
-
-          <p>The combination of rapid population growth, strong tourism, active desert lifestyle, and warm climate creates sustained, high-intent demand for professional waxing services. From everyday clients to visitors and the growing male grooming segment, Phoenix represents a significant and expanding opportunity.</p>
-        </div>
-      </div>
-
-      <div class="md:col-span-5 mt-10 md:mt-0">
-        <div class="bg-[#F8F1E9] rounded-3xl p-8 border border-[#EDE4D7]">
-          <div class="space-y-6">
-            <div>
-              <div class="flex justify-between items-baseline mb-1">
-                <span class="text-sm font-medium text-[#6B6B6B]">Greater Phoenix Metro</span>
-              </div>
-              <div class="flex items-baseline gap-x-2">
-                <span class="text-4xl font-semibold tracking-tighter">5M+</span>
-                <span class="text-sm text-[#B85C38] font-medium">residents</span>
-              </div>
-              <div class="text-xs text-[#6B6B6B]">One of the fastest-growing large metros in the U.S.</div>
-            </div>
-
-            <div class="pt-4 border-t border-[#D4C9B8]">
-              <div class="text-sm font-medium text-[#6B6B6B] mb-2">Why Phoenix Waxing Demand is Strong</div>
-              <ul class="space-y-2 text-sm">
-                <li class="flex items-start gap-x-2"><i class="fa-solid fa-check text-[#B85C38] mt-1 text-xs"></i> <span>Hot desert climate &mdash; comfort &amp; hygiene focus</span></li>
-                <li class="flex items-start gap-x-2"><i class="fa-solid fa-check text-[#B85C38] mt-1 text-xs"></i> <span>Active outdoor lifestyle (hiking, pools, fitness)</span></li>
-                <li class="flex items-start gap-x-2"><i class="fa-solid fa-check text-[#B85C38] mt-1 text-xs"></i> <span>Strong tourism &amp; hospitality industry</span></li>
-                <li class="flex items-start gap-x-2"><i class="fa-solid fa-check text-[#B85C38] mt-1 text-xs"></i> <span>Rising demand across all genders &amp; ages</span></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
+<section id="market" class="scroll-mt-24 bg-paper">
+  <div class="mx-auto grid max-w-page gap-10 px-5 py-16 md:grid-cols-[1.2fr_0.8fr] md:px-8 md:py-24">
+    <div>
+      <p class="text-xs font-semibold uppercase tracking-[0.18em] text-clay">Phoenix</p>
+      <h2 class="mt-3 font-display text-4xl tracking-tight sm:text-5xl">The market the name sits on.</h2>
+      <p class="mt-5 text-mute">
+        The U.S. Census Bureau’s July 1, 2025 estimate puts the Phoenix-Mesa-Chandler metro at
+        <strong class="font-semibold text-ink">5,228,938 residents</strong>, up from 5,169,873 a year earlier.
+        That is a large, still-growing Sun Belt market where heat, pools, hiking, and tourism keep professional
+        waxing on the calendar year-round — including a growing men’s segment.
+      </p>
+      <p class="mt-4 text-sm text-mute">
+        Source: Census Bureau population estimates, published by FRED as series
+        <a class="underline decoration-clay/40 underline-offset-4" href="https://fred.stlouisfed.org/series/PHXPOP" rel="noopener noreferrer">PHXPOP</a>.
+        Retrieved September 27, 2026. Read the longer note on the
+        <a class="underline decoration-clay/40 underline-offset-4" href="/phoenix-waxing-market/">Phoenix waxing market page</a>.
+      </p>
     </div>
+    <aside class="rounded-3xl bg-ink p-7 text-cream">
+      <p class="text-xs uppercase tracking-[0.16em] text-gold">Demand context</p>
+      <ul class="mt-5 space-y-3 text-sm text-mist">
+        <li class="flex gap-3"><Icon name="check" class="mt-0.5 h-5 w-5 shrink-0 text-gold" /> Desert heat makes close shaving irritating for a lot of clients.</li>
+        <li class="flex gap-3"><Icon name="check" class="mt-0.5 h-5 w-5 shrink-0 text-gold" /> Outdoor life — hiking, golf, pools — keeps body waxing routine, not seasonal.</li>
+        <li class="flex gap-3"><Icon name="check" class="mt-0.5 h-5 w-5 shrink-0 text-gold" /> Tourism and hospitality add visitors who book before events.</li>
+        <li class="flex gap-3"><Icon name="check" class="mt-0.5 h-5 w-5 shrink-0 text-gold" /> One metro name can cover Phoenix, Scottsdale, Tempe, and Mesa.</li>
+      </ul>
+    </aside>
   </div>
 </section>

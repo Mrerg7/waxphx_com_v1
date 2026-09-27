@@ -1,68 +1,50 @@
 ---
-import { ACQUISITION_MAILTO, SITE } from '../config/site';
+import { NAV, SITE } from '../config/site';
 ---
 
-<footer class="relative z-10 border-t border-white/10 bg-zinc-950">
-  <div class="max-w-5xl mx-auto px-6 py-16">
-    <!-- Sophisticated Domain Acquisition CTA -->
-    <div class="relative overflow-hidden rounded-3xl border border-[#B85C38]/25 bg-gradient-to-br from-zinc-900 via-black to-[#B85C38]/10 p-8 sm:p-12 mb-12">
-      <div
-        class="absolute -top-24 -right-24 w-64 h-64 rounded-full bg-[#B85C38]/10 blur-3xl pointer-events-none"
-        aria-hidden="true"
-      ></div>
-      <div
-        class="absolute -bottom-24 -left-24 w-64 h-64 rounded-full bg-[#A04E30]/10 blur-3xl pointer-events-none"
-        aria-hidden="true"
-      ></div>
-
-      <div class="relative z-10 grid lg:grid-cols-[1.2fr_0.8fr] gap-10 items-center">
-        <div>
-          <p class="text-xs uppercase tracking-[3px] text-[#B85C38] font-extrabold mb-4">Domain Available for Acquisition</p>
-          <h2 class="font-display text-3xl sm:text-4xl tracking-tight mb-4">
-            waxphx.com — A Category-Defining Digital Asset
-          </h2>
-          <p class="text-zinc-400 max-w-xl leading-relaxed">
-            Positioned at the intersection of Phoenix beauty branding, professional waxing services, and premium
-            local SEO, this domain is a rare strategic asset. Serious buyers may inquire for
-            pricing, transfer logistics, and escrow options.
-          </p>
-        </div>
-
-        <div class="rounded-2xl p-6 sm:p-8 border border-white/10" style="background: rgba(10, 10, 10, 0.88); backdrop-filter: blur(22px);">
-          <p class="text-xs uppercase tracking-[2px] text-zinc-500 font-semibold mb-2">Acquisition Contact</p>
-          <a
-            href={`mailto:${SITE.email}`}
-            class="block text-2xl sm:text-3xl font-display text-white hover:text-[#B85C38] transition-colors break-all"
-          >
-            {SITE.email}
-          </a>
-          <a
-            href={ACQUISITION_MAILTO}
-            class="mt-6 inline-flex w-full items-center justify-center gap-x-3 px-6 py-4 bg-gradient-to-r from-[#B85C38] to-[#A04E30] text-white font-extrabold rounded-2xl hover:brightness-110 transition-all"
-          >
-            <span>Inquire About Acquisition</span>
-            <i class="fa-solid fa-arrow-right"></i>
-          </a>
-          <p class="mt-4 text-[11px] text-zinc-500 text-center tracking-wide">
-            Confidential inquiries &bull; Response within 24 hours
-          </p>
-        </div>
-      </div>
+<footer class="bg-ink text-mist">
+  <div class="mx-auto grid max-w-page gap-10 px-5 py-14 md:grid-cols-[1.4fr_1fr_1fr] md:px-8">
+    <div>
+      <p class="font-display text-3xl text-cream">waxphx<span class="text-gold">.com</span></p>
+      <p class="mt-3 max-w-sm text-sm leading-relaxed">
+        Domain name for sale. Not a salon. Asking {SITE.askingPriceLabel}. Serious inquiries to{' '}
+        <a class="text-cream underline decoration-white/30 underline-offset-4" href={`mailto:${SITE.email}`}>{SITE.email}</a>.
+      </p>
     </div>
-
-    <!-- Disclaimer -->
-    <p class="text-xs text-zinc-500 leading-relaxed max-w-4xl mb-10">
-      This website is for demonstration and informational purposes only. It does not constitute an offer of services,
-      a commitment to deploy, or a guarantee of outcomes. All statistics, projections, and references to specific
-      technologies are based on publicly available information as of June 22, 2026 and are subject to change.
-    </p>
-
-    <!-- Bottom bar -->
-    <div class="pt-8 border-t border-white/10 text-xs text-zinc-500 flex flex-col md:flex-row gap-y-4 items-center justify-between">
-      <div>&copy; 2026 waxphx.com. All rights reserved.</div>
-      <div class="flex items-center gap-x-5">
-        <span>Premium domain listing by owner</span>
-      </div>
+    <div>
+      <p class="text-xs font-semibold uppercase tracking-[0.18em] text-gold">On this site</p>
+      <ul class="mt-4 space-y-2 text-sm">
+        {
+          NAV.map((item) => (
+            <li>
+              <a class="hover:text-cream" href={item.href}>
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+    <div>
+      <p class="text-xs font-semibold uppercase tracking-[0.18em] text-gold">Acquisition</p>
+      <ul class="mt-4 space-y-2 text-sm">
+        <li>Asking price {SITE.askingPriceLabel} USD</li>
+        <li>Escrow or registrar push</li>
+        <li>Reply within one business day</li>
+        <li>{SITE.location}</li>
+      </ul>
+    </div>
+  </div>
+  <div class="border-t border-white/10">
+    <div class="mx-auto max-w-page space-y-4 px-5 py-8 text-xs leading-relaxed md:px-8">
+      <p>
+        waxphx.com is offered for sale as a domain registration only. This site is not a waxing business, booking
+        service, or franchise offering, and it does not guarantee search rankings, type-in traffic, or resale value.
+        Buying the domain does not transfer a trademark, customers, or an operating company. Population figures are
+        the U.S. Census Bureau July 1, 2025 estimate for the Phoenix-Mesa-Chandler metro, as published by FRED series
+        PHXPOP and retrieved September 27, 2026. The asking price is not an appraisal.
+      </p>
+      <p>© {new Date().getFullYear()} waxphx.com. All rights reserved.</p>
     </div>
   </div>
 </footer>

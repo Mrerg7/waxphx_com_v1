@@ -1,0 +1,90 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import PageIntro from '../components/PageIntro.astro';
+import OfferForm from '../components/OfferForm.astro';
+import StickyBar from '../components/StickyBar.astro';
+import { SITE } from '../config/site';
+
+const title = 'Buy waxphx.com | Escrow Domain Acquisition';
+const description =
+  'Buy the waxphx.com domain for $95,000. What is included, how escrow works, and how to send an offer to sales@desertrich.com.';
+---
+
+<BaseLayout title={title} description={description} path="/acquire/" includeProduct crumbs={[{ name: 'Home', path: '/' }, { name: 'Acquire', path: '/acquire/' }]}>
+  <Nav />
+  <main id="content">
+    <PageIntro
+      eyebrow="Acquisition"
+      title="How to buy waxphx.com"
+      lede={`Asking price ${SITE.askingPriceLabel} USD. The asset is the domain registration. Payment goes through escrow, then a registrar transfer.`}
+      crumbs={[
+        { name: 'Home', href: '/' },
+        { name: 'Acquire', href: '/acquire/' },
+      ]}
+    />
+
+    <section class="bg-cream">
+      <div class="mx-auto grid max-w-page gap-6 px-5 py-16 md:grid-cols-2 md:px-8 md:py-20">
+        <article class="rounded-3xl border border-line bg-paper p-7">
+          <h2 class="font-display text-3xl tracking-tight">Included</h2>
+          <ul class="mt-5 space-y-3 text-sm leading-relaxed text-mute">
+            <li>The waxphx.com domain registration.</li>
+            <li>A written agreement on price and transfer method.</li>
+            <li>Escrow instructions both parties accept.</li>
+            <li>A registrar push or auth-code transfer after funds clear.</li>
+            <li>Reasonable help moving DNS off this sales page.</li>
+          </ul>
+        </article>
+        <article class="rounded-3xl border border-line bg-paper p-7">
+          <h2 class="font-display text-3xl tracking-tight">Not included</h2>
+          <ul class="mt-5 space-y-3 text-sm leading-relaxed text-mute">
+            <li>A salon, lease, staff, equipment, or book of clients.</li>
+            <li>A registered trademark or logo assignment, unless negotiated separately in writing.</li>
+            <li>Any other domain, including a .salon, unless it is named in the agreement.</li>
+            <li>A guarantee of Google rankings, domain authority, or type-in traffic.</li>
+            <li>An appraisal. {SITE.askingPriceLabel} is the seller’s asking price.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="border-y border-line bg-paper">
+      <div class="mx-auto max-w-3xl px-5 py-16 md:px-8 md:py-20">
+        <h2 class="font-display text-4xl tracking-tight">The sequence</h2>
+        <ol class="mt-8 space-y-6">
+          <li>
+            <h3 class="font-semibold">1. Offer</h3>
+            <p class="mt-1 text-sm text-mute">Use the form or email {SITE.email}. Include the buying entity, intended use, offer, and whether you need a payment structure other than a single wire.</p>
+          </li>
+          <li>
+            <h3 class="font-semibold">2. Terms</h3>
+            <p class="mt-1 text-sm text-mute">If the number works, both sides confirm the price, the escrow provider, and who pays the escrow fee. Typical split is even, but it is negotiable.</p>
+          </li>
+          <li>
+            <h3 class="font-semibold">3. Pay into escrow</h3>
+            <p class="mt-1 text-sm text-mute">Do not wire the seller directly. Escrow.com, or a registrar marketplace both sides already use, holds the funds.</p>
+          </li>
+          <li>
+            <h3 class="font-semibold">4. Transfer</h3>
+            <p class="mt-1 text-sm text-mute">After escrow confirms, the domain is pushed to the buyer’s registrar account or released with an auth code. The buyer confirms receipt. Escrow releases funds.</p>
+          </li>
+        </ol>
+        <p class="mt-8 text-sm text-mute">
+          Looking for the market context behind the name? Read the
+          <a class="font-semibold text-clay underline decoration-clay/30 underline-offset-4" href="/phoenix-waxing-market/">Phoenix waxing market brief</a>
+          or the <a class="font-semibold text-clay underline decoration-clay/30 underline-offset-4" href="/faq/">FAQ</a>.
+        </p>
+      </div>
+    </section>
+
+    <section class="bg-cream">
+      <div class="mx-auto max-w-page px-5 py-16 md:px-8 md:py-20">
+        <OfferForm />
+      </div>
+    </section>
+  </main>
+  <Footer />
+  <StickyBar />
+</BaseLayout>

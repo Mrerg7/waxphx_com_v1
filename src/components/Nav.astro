@@ -1,45 +1,50 @@
 ---
-import { ACQUISITION_MAILTO } from '../config/site';
+import { NAV, SITE } from '../config/site';
+import Icon from './Icon.astro';
 ---
 
-<nav class="bg-white/95 backdrop-blur-md border-b border-[#EDE4D7] sticky top-0 z-50">
-  <div class="max-w-7xl mx-auto px-6">
-    <div class="flex items-center justify-between h-20">
-      <div class="flex items-center gap-x-3">
-        <div class="flex items-center gap-x-2">
-          <div class="w-9 h-9 bg-[#B85C38] rounded-xl flex items-center justify-center">
-            <span class="text-white text-2xl font-bold tracking-tighter">WP</span>
-          </div>
-          <div>
-            <span class="font-semibold text-2xl tracking-tight">waxphx</span>
-            <span class="font-semibold text-2xl tracking-tight text-[#B85C38]">.com</span>
-          </div>
-        </div>
-      </div>
+<header class="sticky top-0 z-50 border-b border-white/10 bg-ink/95 text-cream backdrop-blur-md">
+  <div class="mx-auto flex h-16 max-w-page items-center justify-between gap-4 px-5 md:h-[4.5rem] md:px-8">
+    <a href="/" class="min-w-0 font-display text-2xl tracking-tight text-cream">
+      waxphx<span class="text-gold">.com</span>
+    </a>
 
-      <div class="flex items-center gap-x-4">
-        <a href="#why" class="hidden md:block px-4 py-2 text-sm font-medium text-[#4A5D4A] hover:text-[#2D2D2D] transition-colors">Why .com</a>
-        <a href="#market" class="hidden md:block px-4 py-2 text-sm font-medium text-[#4A5D4A] hover:text-[#2D2D2D] transition-colors">Phoenix Market</a>
-        <a href="#use-cases" class="hidden md:block px-4 py-2 text-sm font-medium text-[#4A5D4A] hover:text-[#2D2D2D] transition-colors">Use Cases</a>
+    <nav class="hidden items-center gap-1 md:flex" aria-label="Primary">
+      {
+        NAV.map((item) => (
+          <a href={item.href} class="rounded-full px-3 py-2 text-sm text-mist hover:text-cream">
+            {item.label}
+          </a>
+        ))
+      }
+      <a
+        href="/#offer"
+        class="ml-2 inline-flex min-h-11 items-center rounded-full bg-gold px-4 text-sm font-semibold text-ink"
+      >
+        Make an offer
+      </a>
+    </nav>
 
-        <a
-          href="#acquire"
-          class="inline-flex items-center justify-center px-6 py-2.5 bg-[#B85C38] hover:bg-[#A04E30] text-white text-sm font-semibold rounded-2xl transition-all active:scale-[0.985]"
-        >
-          Make an Offer
+    <details class="relative md:hidden">
+      <summary class="flex h-11 w-11 items-center justify-center rounded-full border border-white/15">
+        <span class="sr-only">Open menu</span>
+        <Icon name="menu" />
+      </summary>
+      <nav
+        class="absolute right-0 top-14 w-64 rounded-2xl border border-white/10 bg-panel p-2 shadow-2xl"
+        aria-label="Mobile"
+      >
+        {
+          NAV.map((item) => (
+            <a href={item.href} class="block rounded-xl px-3 py-3 text-sm text-cream">
+              {item.label}
+            </a>
+          ))
+        }
+        <a href="/#offer" class="mt-1 flex min-h-11 items-center justify-center rounded-xl bg-gold px-3 text-sm font-semibold text-ink">
+          Make an offer · {SITE.askingPriceLabel}
         </a>
-      </div>
-    </div>
+      </nav>
+    </details>
   </div>
-</nav>
-
-<script>
-  window.addEventListener('scroll', () => {
-    const nav = document.querySelector('nav');
-    if (window.scrollY > 20) {
-      nav.classList.add('nav-scrolled', 'bg-white/95');
-    } else {
-      nav.classList.remove('nav-scrolled');
-    }
-  });
-</script>
+</header>

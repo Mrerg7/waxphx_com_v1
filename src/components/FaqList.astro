@@ -1,0 +1,22 @@
+---
+import { FAQS } from '../config/site';
+
+interface Props {
+  openFirst?: boolean;
+}
+const { openFirst = false } = Astro.props;
+---
+
+<div class="divide-y divide-line rounded-3xl border border-line bg-paper">
+  {
+    FAQS.map((item, index) => (
+      <details class="group px-5 py-1" open={openFirst && index === 0}>
+        <summary class="flex min-h-14 items-center justify-between gap-4 py-3 text-left font-semibold tracking-tight">
+          {item.q}
+          <span class="text-clay transition group-open:rotate-45" aria-hidden="true">+</span>
+        </summary>
+        <p class="pb-4 text-sm leading-relaxed text-mute">{item.a}</p>
+      </details>
+    ))
+  }
+</div>

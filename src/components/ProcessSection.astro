@@ -1,0 +1,28 @@
+---
+const steps = [
+  { n: '01', title: 'Inquire', body: 'Name, intended use, and a number. A reply within one business day.' },
+  { n: '02', title: 'Agree', body: 'Price and timeline in writing. No public auction unless you ask for one.' },
+  { n: '03', title: 'Escrow', body: 'Funds held by Escrow.com or an equivalent both sides accept.' },
+  { n: '04', title: 'Transfer', body: 'Registrar push after payment. Usually a few business days, not a month.' },
+];
+---
+
+<section class="bg-cream">
+  <div class="mx-auto max-w-page px-5 py-16 md:px-8 md:py-20">
+    <div class="flex flex-wrap items-end justify-between gap-4">
+      <h2 class="font-display text-4xl tracking-tight">Four steps. Then it is yours.</h2>
+      <a class="text-sm font-semibold text-clay underline decoration-clay/30 underline-offset-4" href="/acquire/">Full acquisition terms</a>
+    </div>
+    <ol class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      {
+        steps.map((step) => (
+          <li class="rounded-3xl border border-line p-5">
+            <p class="font-display text-2xl text-clay">{step.n}</p>
+            <h3 class="mt-3 font-semibold">{step.title}</h3>
+            <p class="mt-2 text-sm text-mute">{step.body}</p>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>

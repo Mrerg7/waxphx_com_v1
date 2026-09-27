@@ -1,184 +1,84 @@
 ---
 import '../styles/global.css';
-import { SITE, OG_IMAGE, ACQUISITION_MAILTO } from '../config/site';
+import { OG_IMAGE, SITE } from '../config/site';
+import { pageSchema } from '../lib/schema';
+
+interface Crumb {
+  name: string;
+  path: string;
+}
 
 interface Props {
   title?: string;
   description?: string;
-  ogImage?: string;
+  path?: string;
   noindex?: boolean;
+  includeProduct?: boolean;
+  includeFaq?: boolean;
+  crumbs?: Crumb[];
 }
 
 const {
   title = SITE.title,
   description = SITE.description,
-  ogImage = OG_IMAGE,
+  path = '/',
   noindex = false,
+  includeProduct = false,
+  includeFaq = false,
+  crumbs = [],
 } = Astro.props;
 
-const siteOrigin = SITE.url.replace(/\/$/, '');
-// Always canonicalize to the homepage — this site is a single landing page.
-// Avoid self-canonicalizing soft paths like /404/ that confuse crawlers.
-const canonicalURL = `${siteOrigin}/`;
-const publishedDate = '2026-06-22';
-
+const canonicalURL = `${SITE.url}${path}`;
 const structuredData = noindex
   ? null
-  : {
-      '@context': 'https://schema.org',
-      '@graph': [
-        {
-          '@type': 'WebSite',
-          '@id': `${siteOrigin}/#website`,
-          url: canonicalURL,
-          name: SITE.name,
-          description,
-          inLanguage: 'en-US',
-        },
-        {
-          '@type': 'WebPage',
-          '@id': `${siteOrigin}/#webpage`,
-          url: canonicalURL,
-          name: title,
-          description,
-          isPartOf: { '@id': `${siteOrigin}/#website` },
-          datePublished: publishedDate,
-          dateModified: publishedDate,
-          inLanguage: 'en-US',
-        },
-        {
-          '@type': 'Product',
-          '@id': `${siteOrigin}/#product`,
-          name: 'waxphx.com Premium Domain Name',
-          description:
-            'The definitive premium .com domain for professional body waxing, facial waxing, and expert hair removal in Phoenix. Available for acquisition.',
-          url: canonicalURL,
-          image: OG_IMAGE,
-          category: 'Premium Domain Name',
-          brand: {
-            '@type': 'Brand',
-            name: 'waxphx.com',
-          },
-          offers: {
-            '@type': 'Offer',
-            url: ACQUISITION_MAILTO,
-            price: '95000',
-            priceCurrency: 'USD',
-            availability: 'https://schema.org/InStock',
-            seller: {
-              '@type': 'Organization',
-              name: SITE.name,
-              email: SITE.email,
-            },
-            shippingDetails: {
-              '@type': 'OfferShippingDetails',
-              shippingRate: {
-                '@type': 'MonetaryAmount',
-                value: '0.00',
-                currency: 'USD',
-              },
-              deliveryTime: {
-                '@type': 'ShippingDeliveryTime',
-                handlingTime: {
-                  '@type': 'QuantitativeValue',
-                  minValue: 0,
-                  maxValue: 1,
-                  unitCode: 'DAY',
-                },
-                transitTime: {
-                  '@type': 'QuantitativeValue',
-                  minValue: 0,
-                  maxValue: 0,
-                  unitCode: 'DAY',
-                },
-              },
-              shippingDestination: {
-                '@type': 'DefinedRegion',
-                addressCountry: 'US',
-              },
-            },
-            hasMerchantReturnPolicy: {
-              '@type': 'MerchantReturnPolicy',
-              returnPolicyCategory: 'https://schema.org/MerchantReturnFiniteReturnWindow',
-              returnMethod: 'https://schema.org/ReturnByMail',
-              returnFees: 'https://schema.org/FreeReturn',
-              applicableCountry: 'US',
-              merchantReturnDays: 0,
-            },
-          },
-          aggregateRating: {
-            '@type': 'AggregateRating',
-            ratingValue: '5',
-            bestRating: '5',
-            ratingCount: '1',
-          },
-          review: {
-            '@type': 'Review',
-            author: {
-              '@type': 'Organization',
-              name: SITE.name,
-            },
-            reviewBody:
-              'The definitive .com domain for the Phoenix waxing and hair removal industry — unmatched brand authority and local keyword dominance.',
-          },
-        },
-        {
-          '@type': 'Organization',
-          '@id': `${siteOrigin}/#organization`,
-          name: SITE.name,
-          url: canonicalURL,
-          email: SITE.email,
-          address: {
-            '@type': 'PostalAddress',
-            addressLocality: 'Phoenix',
-            addressRegion: 'AZ',
-            addressCountry: 'US',
-          },
-        },
-      ],
-    };
+  : pageSchema({ path, title, description, crumbs, includeProduct, includeFaq });
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
-
     <title>{title}</title>
     <meta name="description" content={description} />
-    <meta name="robots" content={noindex ? 'noindex' : 'index, follow, max-image-preview:large'} />
+    <meta name="robots" content={noindex ? 'noindex, follow' : 'index, follow, max-image-preview:large, max-snippet:-1'} />
+    <meta name="theme-color" content="#141311" />
     <link rel="canonical" href={canonicalURL} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content={SITE.name} />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={ogImage} />
-    <meta property="og:image:secure_url" content={ogImage} />
+    <meta property="og:image" content={OG_IMAGE} />
+    <meta property="og:image:secure_url" content={OG_IMAGE} />
+    <meta property="og:image:type" content="image/jpeg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="waxphx.com — Premium Domain for Phoenix Waxing & Hair Removal" />
+    <meta property="og:image:alt" content="waxphx.com premium domain for sale — Phoenix waxing and hair removal" />
     <meta property="og:locale" content={SITE.locale} />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={ogImage} />
-    <meta name="twitter:image:alt" content="waxphx.com — Premium Domain for Phoenix Waxing & Hair Removal" />
+    <meta name="twitter:image" content={OG_IMAGE} />
+    <meta name="twitter:image:alt" content="waxphx.com premium domain for sale — Phoenix waxing and hair removal" />
 
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    {SITE.googleSiteVerification && (
-      <meta name="google-site-verification" content={SITE.googleSiteVerification} />
-    )}
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-    {structuredData && (
-      <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
-    )}
+    {SITE.googleSiteVerification && <meta name="google-site-verification" content={SITE.googleSiteVerification} />}
+    {structuredData && <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />}
   </head>
-  <body>
+  <body class="pb-24 md:pb-0">
+    <a
+      href="#content"
+      class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:bg-paper focus:px-4 focus:py-2"
+    >
+      Skip to content
+    </a>
     <slot />
   </body>
 </html>

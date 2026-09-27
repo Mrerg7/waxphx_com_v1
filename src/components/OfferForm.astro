@@ -1,0 +1,113 @@
+---
+import { SITE, acquisitionMailto } from '../config/site';
+import Icon from './Icon.astro';
+
+interface Props {
+  id?: string;
+}
+const { id = 'offer' } = Astro.props;
+const uses = ['Flagship salon', 'Mobile or concierge brand', 'Booking directory', 'Academy or products', 'Investment hold', 'Other'];
+---
+
+<form id={id} class="offer-form scroll-mt-24 rounded-3xl border border-line bg-paper p-5 sm:p-8" data-email={SITE.email} novalidate>
+  <div class="flex flex-wrap items-end justify-between gap-4">
+    <div>
+      <p class="text-xs font-semibold uppercase tracking-[0.18em] text-clay">Acquire the domain</p>
+      <h2 class="mt-2 font-display text-3xl tracking-tight sm:text-4xl">Make an offer</h2>
+    </div>
+    <p class="font-display text-4xl tracking-tight">{SITE.askingPriceLabel}</p>
+  </div>
+  <p class="mt-3 max-w-xl text-sm text-mute">
+    Asking price in USD. Tell us who you are and what you would pay. This opens an email to {SITE.email}. Nothing is stored on this site.
+  </p>
+
+  <div class="mt-6 grid gap-4 sm:grid-cols-2">
+    <label class="block text-sm font-medium">
+      Name
+      <input class="mt-1.5 w-full rounded-xl border border-line bg-cream px-3 py-3 text-base" name="name" autocomplete="name" required />
+    </label>
+    <label class="block text-sm font-medium">
+      Email
+      <input class="mt-1.5 w-full rounded-xl border border-line bg-cream px-3 py-3 text-base" type="email" name="email" autocomplete="email" required />
+    </label>
+    <label class="block text-sm font-medium">
+      Intended use
+      <select class="mt-1.5 w-full rounded-xl border border-line bg-cream px-3 py-3 text-base" name="use">
+        {uses.map((use) => <option>{use}</option>)}
+      </select>
+    </label>
+    <label class="block text-sm font-medium">
+      Offer (USD)
+      <input class="mt-1.5 w-full rounded-xl border border-line bg-cream px-3 py-3 text-base" name="offer" inputmode="numeric" placeholder="95000" />
+    </label>
+    <label class="block text-sm font-medium sm:col-span-2">
+      Note
+      <textarea class="mt-1.5 min-h-28 w-full rounded-xl border border-line bg-cream px-3 py-3 text-base" name="note" placeholder="Timing, entity name, questions about escrow."></textarea>
+    </label>
+  </div>
+
+  <div class="mt-5 flex flex-col gap-3 sm:flex-row">
+    <button class="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-ink px-6 font-semibold text-cream" type="submit">
+      Send offer
+      <Icon name="arrow" />
+    </button>
+    <a class="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-line px-6 font-medium" href={acquisitionMailto()}>
+      <Icon name="mail" />
+      Email directly
+    </a>
+    <button class="copy-email inline-flex min-h-12 items-center justify-center rounded-full px-4 text-sm font-medium text-mute" type="button" data-email={SITE.email}>
+      Copy email
+    </button>
+  </div>
+  <p class="form-status mt-4 text-sm text-mute" role="status"></p>
+</form>
+
+<script>
+  document.querySelectorAll('.offer-form').forEach((form) => {
+    const node = form as HTMLFormElement;
+    node.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const data = new FormData(node);
+      const name = String(data.get('name') || '').trim();
+      const email = String(data.get('email') || '').trim();
+      const status = node.querySelector('.form-status');
+      if (!name || !email.includes('@')) {
+        if (status) status.textContent = 'Add your name and a real email so the seller can reply.';
+        return;
+      }
+      const body = [
+        'Hello,',
+        '',
+        'I am interested in acquiring waxphx.com.',
+        '',
+        `Name: ${name}`,
+        `Email: ${email}`,
+        `Intended use: ${String(data.get('use') || '')}`,
+        `Offer (USD): ${String(data.get('offer') || '')}`,
+        '',
+        String(data.get('note') || ''),
+      ].join('\n');
+      const to = node.dataset.email || 'sales@desertrich.com';
+      window.location.href = `mailto:${to}?subject=${encodeURIComponent('waxphx.com Domain Acquisition Inquiry')}&body=${encodeURIComponent(body)}`;
+      if (status) {
+        status.textContent = `Your email app should open a draft to ${to}. If it does not, copy the address and send it yourself.`;
+      }
+    });
+  });
+
+  document.querySelectorAll('.copy-email').forEach((button) => {
+    button.addEventListener('click', async () => {
+      const email = (button as HTMLButtonElement).dataset.email || '';
+      const label = button.textContent;
+      try {
+        await navigator.clipboard.writeText(email);
+        button.textContent = 'Copied';
+      } catch {
+        window.location.href = `mailto:${email}`;
+      }
+      setTimeout(() => {
+        button.textContent = label;
+      }, 1800);
+    });
+  });
+</script>

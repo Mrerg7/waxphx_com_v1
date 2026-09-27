@@ -1,0 +1,39 @@
+---
+interface Crumb {
+  name: string;
+  href: string;
+}
+interface Props {
+  eyebrow: string;
+  title: string;
+  lede: string;
+  crumbs: Crumb[];
+}
+const { eyebrow, title, lede, crumbs } = Astro.props;
+---
+
+<section class="bg-ink text-cream">
+  <div class="mx-auto max-w-page px-5 py-12 md:px-8 md:py-16">
+    <nav aria-label="Breadcrumb" class="text-sm text-mist">
+      <ol class="flex flex-wrap gap-x-2 gap-y-1">
+        {
+          crumbs.map((crumb, index) => (
+            <li class="flex items-center gap-2">
+              {index > 0 && <span aria-hidden="true">/</span>}
+              {index === crumbs.length - 1 ? (
+                <span class="text-cream">{crumb.name}</span>
+              ) : (
+                <a class="underline decoration-white/20 underline-offset-4" href={crumb.href}>
+                  {crumb.name}
+                </a>
+              )}
+            </li>
+          ))
+        }
+      </ol>
+    </nav>
+    <p class="mt-6 text-xs font-semibold uppercase tracking-[0.18em] text-gold">{eyebrow}</p>
+    <h1 class="mt-3 max-w-3xl font-display text-4xl tracking-tight sm:text-6xl">{title}</h1>
+    <p class="mt-4 max-w-2xl text-lg text-mist">{lede}</p>
+  </div>
+</section>

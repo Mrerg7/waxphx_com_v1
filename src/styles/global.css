@@ -1,69 +1,42 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,560;9..144,650&family=Outfit:wght@400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
-    @apply bg-[#F8F1E9] text-[#2D2D2D] overflow-x-hidden font-sans antialiased;
+    @apply bg-cream text-ink font-sans antialiased overflow-x-hidden;
+    font-size: 1.0625rem;
+    line-height: 1.6;
+  }
+
+  button,
+  summary,
+  [role='button'] {
+    cursor: pointer;
+  }
+
+  summary::-webkit-details-marker {
+    display: none;
+  }
+
+  summary {
+    list-style: none;
+  }
+
+  :focus-visible {
+    outline: 2px solid #8c3f2c;
+    outline-offset: 3px;
   }
 }
 
-@layer components {
-  .font-display {
-    font-family: 'Playfair Display', Georgia, serif;
-    font-weight: 700;
-  }
-
-  .premium-gradient {
-    background: linear-gradient(135deg, #F8F1E9 0%, #F0E6D9 100%);
-  }
-
-  .section-header {
-    font-size: 2.25rem;
-    line-height: 2.5rem;
-    font-weight: 700;
-    color: #2D2D2D;
-  }
-
-  .domain-name {
-    font-size: clamp(2.5rem, 12vw, 4.75rem);
-    line-height: 1;
-    font-weight: 800;
-    letter-spacing: -0.05em;
-    color: #2D2D2D;
-    max-width: 100%;
-    overflow-wrap: anywhere;
-  }
-
-  .value-card {
-    transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1),
-      box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .value-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-  }
-
-  .nav-scrolled {
-    box-shadow: 0 1px 0 0 rgb(0 0 0 / 0.05);
-  }
-
-  .modern-pill {
-    background: rgba(184, 92, 56, 0.08);
-    color: #B85C38;
-    font-weight: 600;
-    font-size: 0.75rem;
-    padding: 0.25rem 0.75rem;
-    border-radius: 9999px;
-  }
-
-  .com-badge {
-    background: linear-gradient(90deg, #B85C38, #A04E30);
-    color: white;
-    font-weight: 700;
-    letter-spacing: 0.5px;
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
   }
 }

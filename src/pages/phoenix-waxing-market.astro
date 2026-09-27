@@ -1,0 +1,76 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import PageIntro from '../components/PageIntro.astro';
+import StickyBar from '../components/StickyBar.astro';
+import { SITE } from '../config/site';
+
+const title = 'Phoenix Waxing Market | Why waxphx.com Fits';
+const description =
+  'Why a Phoenix waxing brand wants a short .com: Census metro population of 5.23 million, year-round demand, and what waxphx.com does and does not do for search.';
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  path="/phoenix-waxing-market/"
+  crumbs={[
+    { name: 'Home', path: '/' },
+    { name: 'Phoenix market', path: '/phoenix-waxing-market/' },
+  ]}
+>
+  <Nav />
+  <main id="content">
+    <PageIntro
+      eyebrow="Market brief"
+      title="Phoenix is large enough to support the name."
+      lede="A domain is only as useful as the market that already searches the words inside it. This page sticks to published population figures and the obvious local demand. It is not a forecast."
+      crumbs={[
+        { name: 'Home', href: '/' },
+        { name: 'Phoenix market', href: '/phoenix-waxing-market/' },
+      ]}
+    />
+
+    <article class="bg-cream">
+      <div class="mx-auto max-w-3xl space-y-6 px-5 py-16 text-[1.05rem] leading-relaxed text-mute md:px-8 md:py-20">
+        <h2 class="font-display text-3xl tracking-tight text-ink">The published number</h2>
+        <p>
+          The U.S. Census Bureau estimated the resident population of the Phoenix-Mesa-Chandler metropolitan statistical area at
+          <strong class="text-ink">5,228,938 on July 1, 2025</strong>. The July 1, 2024 estimate was 5,169,873. The Federal Reserve Bank of St. Louis republishes that series as
+          <a class="text-clay underline decoration-clay/30 underline-offset-4" href="https://fred.stlouisfed.org/series/PHXPOP" rel="noopener noreferrer">FRED PHXPOP</a>.
+          Census vintage notes are on the
+          <a class="text-clay underline decoration-clay/30 underline-offset-4" href="https://www.census.gov/data/tables/time-series/demo/popest/2020s-total-metro-and-micro-statistical-areas.html" rel="noopener noreferrer">metro population tables</a>.
+          Figures were retrieved for this page on September 27, 2026.
+        </p>
+        <p>
+          That is one of the country’s largest metros, and it is still adding people. A local service brand does not need national scale to justify a category .com. It needs a city where the service is booked every week. Phoenix is that city.
+        </p>
+
+        <h2 class="font-display text-3xl tracking-tight text-ink">Why waxing stays busy here</h2>
+        <p>
+          The climate is hot for most of the year. Clients who swim, hike, golf, or work outside tend to prefer waxing over daily shaving once irritation shows up. Tourism and events add a second stream: visitors booking before a wedding, a conference, or a resort weekend. Demand is not limited to women. Men’s brow, back, and body waxing is a normal menu item in Valley studios.
+        </p>
+        <p>
+          The metro is also spread out. A name that says Phoenix, rather than one neighborhood, can cover Arcadia, Scottsdale, Tempe, Mesa, and the rest of the Valley without being rewritten every time a second room opens.
+        </p>
+
+        <h2 class="font-display text-3xl tracking-tight text-ink">What the domain changes — and what it does not</h2>
+        <p>
+          waxphx.com matches the way people already talk about the service: wax, and PHX. That helps memory, word of mouth, and the links a future site can earn, because other pages can use the brand as the anchor. It is a poor substitute for the work that actually ranks a local business: a fast site, service pages, consistent name-address-phone citations, reviews, and a Google Business Profile at a real studio.
+        </p>
+        <p>
+          Google has discounted “exact match” domains as a shortcut for years. Treat this name as brand infrastructure, not as a ranking coupon. Anyone promising a domain-authority number in the sales pitch is guessing. Authority is a third-party estimate of links. This sales site cannot hand a buyer a high score. It can hand them the name those links should point at.
+        </p>
+
+        <h2 class="font-display text-3xl tracking-tight text-ink">Who should buy it</h2>
+        <p>
+          A studio that wants the default Phoenix address. A mobile brand that lives on texts and referrals. A directory that needs a neutral metro name. An investor who understands that a category .com in a 5-million-person market is scarce, and who is willing to hold it. The asking price is {SITE.askingPriceLabel}. Terms are on the
+          <a class="font-semibold text-clay underline decoration-clay/30 underline-offset-4" href="/acquire/">acquisition page</a>.
+        </p>
+      </div>
+    </article>
+  </main>
+  <Footer />
+  <StickyBar />
+</BaseLayout>
