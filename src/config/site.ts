@@ -16,7 +16,7 @@ export const SITE = {
 } as const;
 
 export const OG_IMAGE = `${SITE.url}/og.jpg`;
-export const BRAND_IMAGE = '/brand/mark.jpg';
+export const BRAND_IMAGE = '/brand/phoenix.jpg';
 
 export const NAV = [
   { href: '/#why', label: 'Why this name' },
